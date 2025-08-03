@@ -3,14 +3,13 @@ kind: Job
 metadata:
   name: fail-postsync
   annotations:
-    # PostSync 훅으로 실행
     argocd.argoproj.io/hook: PostSync
 spec:
-  backoffLimit: 0            # 재시도 없이 단번에 실패
+  backoffLimit: 0
   template:
     spec:
       restartPolicy: Never
       containers:
       - name: fail
         image: busybox
-        command: ["sh", "-c", "exit 1"]  # 항상 exit 1
+        command: ["sh", "-c", "exit 1"]
